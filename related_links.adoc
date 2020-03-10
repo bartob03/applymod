@@ -1,0 +1,5 @@
+= Related links
+
+The following link discusses topics related to the API.
+
+* https://confluence.tomtomgroup.com/display/MAPSPL/CMR+Bulk+Ingest+API+Proposal[CMR Bulk Ingest API Proposal]

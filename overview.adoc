@@ -1,0 +1,6 @@
+= Overview
+
+The _ApplyModifications API_ is used for making calls via an entry point, which is part of the transactional editing API. The entry point is used as part of a map editing transaction and allows the map process to support translator cascades and checker processes when committing a map transaction. 
+
+
+

@@ -1,0 +1,8 @@
+= Basic concepts
+
+== CoreDB
+
+_CoreDB_ is a service layer on top of the database that stores the map data.
+
+CoreDB is used for programmatically creating transactions, performing, and committing edits for map content such as roads, administrative areas, address points, and speed limits.
+

@@ -1,0 +1,301 @@
+== ApplyModifications API call 
+
+URL: `POST /transaction/{txnId}/modifications?enableCascades={true/false},groupId={x}`
+
+=== Headers
+
+[width="100%",options="header"]
+|====================
+| Header | Value format   
+| `Content-type` | `application/json; charset=utf-8` 
+| `API-version` | `0.y.z`
+|====================
+
+
+=== Parameters
+
+[width="100%",options="header"]
+|====================
+| Parameter | Required  | Default value | Description 
+| `txnId` | Required | - |  Id of the transaction to which the modifications should be applied.
+| `enableCascades` | Required | `true` | Parameter indicating whether the backend should enable translator cascades when processing the transaction. 
+| `groupId` | Required | `none` |The group to which the edit should be applied. This is used when reverting edits.
+|====================
+
+=== JSON Payload
+
+The payload is a JSON encoded array of map editing commands. The order of execution of the commands is to be preserved to ensure that commands with inputs coming from a previously executed command can succeed.
+
+[float]
+.JSON payload format
+[source,JSON]
+----
+
+[
+    { /command/},
+    { /command/},
+    …
+]
+
+----
+
+=== Map Editing Commands
+
+The following table lists typical fields used in the commands specified in the JSON payload.
+
+|====================
+| Field | Description | Example Value
+| `@type` |   Refers to the type of command.| `CreateFeature`
+| `geometry` | Specific WKT geometry where applicable.| `POLYGON((4.4861552 52.1503301,4.4861861 52.1503366,4.4861983 52.1503149,4.4861675 52.1503083,4.4861552 52.1503301))`
+| `type` | Type of the object expressed in the generic model string format. | `DisplayModel:0.35:DisplayModel:PartOfFeature`
+| `identity` | Optional id of the object in the form of a GUID. If provided, the backend uses the value when creating the object. | `43f4aea0-67fc-4db4-aae8-2b8d39c5e03e`
+|====================
+
+
+==== CreateFeature
+
+Creates the object based on the specified type, identity, and geometry. The `identity` field is optional and if it's empty, the backend generates a random identity.
+
+[float]
+.CreateFeature command example 1
+[source,JSON]
+----
+
+{
+   "@type":"CreateFeature",
+   "geometry":"POINT(1 1)”,
+   "identity":"43f4aea0-67fc-4db4-aae8-2b8d39c5e03e",
+   "type":"DisplayModel:0.35:DisplayModel:AttributedFeature"
+   }
+
+----
+
+[float]
+.CreateFeature command example 2
+[source,JSON]
+----
+
+{
+      "@type":"CreateFeature",
+      "type":"TTOM:4_0:TTOM-Core:RoadElement",
+      "geometry":"POINT (1 1)",
+      "identity":"42fef359-8797-4b9f-8844-8bf8c2141212"
+   }
+
+----
+
+
+
+
+'''
+
+==== CreateAssociation
+
+Creates an association between two already existing features. The features can be created in the same call as `applyModifications`.
+
+.CreateAssociation parameters
+[width="100%",options="header"]
+|====================
+| Parameter | Description  | Sample Value
+| `source` | Identity (id) of the source feature. |  "6de7455e-81fa-48bc-9565-3a361db1aada"
+| `target` |  Identity (id) of the target feature. | “6de7455e-81fa-48bc-9565-3a361db1aada"
+| `sequence` | Integer denoting the sequence number of the association within this feature and this type of association | 0
+|====================
+
+[float]
+.CreateAssociation command example
+[source,JSON]
+----
+
+{
+   "@type":"CreateFeature",
+   "geometry":"POINT(1 1)”,
+   "identity":"43f4aea0-67fc-4db4-aae8-2b8d39c5e03e",
+   "type":"DisplayModel:0.35:DisplayModel:AttributedFeature"
+}
+
+----
+
+'''
+
+
+==== SetFeatureAttributes
+
+Sets attributes of the feature as defined by the `featureIdentity` field.
+
+.SetFeatureAttributes parameters
+[width="100%",options="header"]
+|====================
+| Parameter | Description  | Sample Value
+| `featureIdentity` | Id of the feature to which the attribute should be set. |  "6de7455e-81fa-48bc-9565-3a361db1aada"
+| `values` |  JSON representation of the attributes that should be set. Represented as an JSON array of objects. | `[
+    {/attribute/},
+    {/attribute/},
+    …
+]`
+|====================
+
+.Attribute object fields
+[width="100%",options="header"]
+|====================
+| Parameter | Description  | Sample Value
+| `type` | Type of the attribute expressed in the generic model string format. |  `DisplayModel:0.35:DisplayModel:S2`
+| `valueType` |  Type of the attribute value expressed in the generic model string format. | `DisplayModel:0.35:DisplayModel:String`
+| `value` | Value of the attribute. Encoded as JSON primitive types if possible. In case of complex attributes, the structure is recursive. The `value` field becomes an array of JSON objects with simple and complex attributes as items. In case the value type is an enum, it is provided as a string encoded value. |  `\\:BH/250`
+|====================
+
+[float]
+.Attribute example
+[source,JSON]
+----
+
+{
+"values":[
+         {
+            "valueType":"TTOM:4_0:TTOM-Core:Freeway",
+            "values":[
+               "NotPartOfAFreeway"
+            ]
+         }
+}
+----
+
+
+
+[float]
+.SetFeatureAttributes command example
+[source,JSON]
+----
+
+{
+   "@type":"SetFeatureAttributes”,
+   "featureIdentity":"5859e98b-068c-459f-8208-b1567957eb3c",
+   "type":"DisplayModel:0.35:DisplayModel:S2",
+   "values":[
+      {
+         "type":"DisplayModel:0.35:DisplayModel:S2",
+         "value":"\\:BH/250",
+         "valueType":"DisplayModel:0.35:DisplayModel:String"
+      }
+   ]
+}
+
+----
+
+'''
+
+==== DeleteFeature
+
+Deletes a feature as defined by the provided `identity` value.
+
+[float]
+.DeleteFeature example
+[source,JSON]
+----
+
+{
+      "@type":"DeleteFeature",
+      "identity":"cc89822e-2ed7-45cf-ad97-b365e27e2b4f"
+}
+
+----
+
+'''
+
+==== DeleteAssociation
+
+Deletes an association defined either by the association identity or type of association, and the source and target feature identities.
+
+[float]
+.DeleteFeature command example
+[source,JSON]
+----
+
+{
+      "@type":"DeleteAssociation",
+      "identity":"72a3ac66-3aef-453c-950d-b7ea2ee31eef"
+}
+
+----
+
+'''
+
+==== SetFeatureGeometry
+
+Sets the geometry of an already existing feature. The type of geometry must match the existing feature type.
+
+[float]
+.SetFeatureGeometry command example
+[source,JSON]
+----
+
+{
+   "@type":"SetFeatureGeometry",
+   "geometry":"POINT (1,1)",
+   "identity":"cc89822e-2ed7-45cf-ad97-b365e27e2b4f"
+}
+
+----
+
+'''
+
+
+==== SetAssociationAttributes
+
+Sets the attributes of an association. The association can be defined by the identity or by type, source and target identity. The attribute values are provided in the same way as the <<setFeatureAttributes, setFeatureAttributes>> command.
+
+[float]
+.SetAssociationAttributes command example
+[source,JSON]
+----
+
+{
+   "@type":"SetAssociationAttributes”,
+   “associationIdentity":"5859e98b-068c-459f-8208-b1567957eb3c",
+   "type":"DisplayModel:0.35:DisplayModel:A2",
+   "values":[
+      {
+         "type":"DisplayModel:0.35:DisplayModel:A2",
+         "value":"\\:BH/250",
+         "valueType":"DisplayModel:0.35:DisplayModel:String"
+      }
+   ]
+}
+
+----
+
+'''
+
+
+=== Response format
+
+[width="100%",options="header"]
+|====================
+|  | Description  | Sample Value 
+| Error code | Response code with description of outcome. |  200
+| JSON object | Describes the applied modification. Includes the list of specified commands. If no ids were provided during the request, generated ids of features are returned. | `“commands”: [
+        /{command}/,
+        /{command}/
+        …
+    ]`
+| `branch` | The branch on which the modifications were applied. |  `“branch”: “cde4aea0-67fc-4db4-aae8-2b8d39c5e03e”`.
+| `version` | The version in which the modifications were applied. | `“version”: 17`.
+|====================
+
+
+[float]
+.Response example
+[source,JSON]
+----
+{
+    “branch”: “cde4aea0-67fc-4db4-aae8-2b8d39c5e03e”,
+    “version”: 17,
+    “commands”: [
+        /{command}/,
+        /{command}/
+        …
+    ]
+}
+----
+
+'''

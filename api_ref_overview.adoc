@@ -1,0 +1,24 @@
+== Supported HTTP methods
+
+
+[width="100%",options="header"]
+|====================
+| Method | Description   
+| `POST` | Creates a specified JSON object based on payload provided. 
+|====================
+
+== Response codes
+
+
+The following table lists typical response codes encountered when making read requests.
+
+[width="100%",options="header"]
+|====================
+| Error code | Error description  
+| `200` | General request error for failed requests made using Cartopia. This response includes details regarding the processing failure.    
+| `400` | General request error for failed requests made using other clients.This response includes details regarding the processing failure.
+
+|====================
+
+
+'''

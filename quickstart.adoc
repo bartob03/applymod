@@ -1,0 +1,84 @@
+= QuickStart
+
+The following example demonstrates the different available commands for the `ApplyModifications` API call.
+
+[source,JSON]
+----
+[
+   {
+      "@type":"CreateFeature",
+      "geometry":"POLYGON((4.4861552 52.1503301,4.4861861 52.1503366,4.4861983 52.1503149,4.4861675 52.1503083,4.4861552 52.1503301))",
+      "identity":"43f4aea0-67fc-4db4-aae8-2b8d39c5e03e",
+      "type":"DisplayModel:0.35:DisplayModel:AttributedFeature"
+   },
+   {
+      "@type":"CreateAssociation",
+      "sequence":0,
+      "source":"6de7455e-81fa-48bc-9565-3a361db1aada",
+      "target":"4ab4ae87-962a-4df2-842d-8e0d5295a644",
+      "type":"DisplayModel:0.35:DisplayModel:PartOfFeature"
+   },
+   {
+      "@type":"SetFeatureAttributes”,
+      "featureIdentity":"5859e98b-068c-459f-8208-b1567957eb3c",
+      "type":"DisplayModel:0.35:DisplayModel:S2",
+      "values":[
+         {
+            "type":"DisplayModel:0.35:DisplayModel:S2",
+            "value":"\\:BH/250",
+            "valueType":"DisplayModel:0.35:DisplayModel:String"
+         }
+      ]
+   },
+   {
+      "@type":"DeleteFeature",
+      "identity":"cc89822e-2ed7-45cf-ad97-b365e27e2b4f"
+   },
+   {
+      "@type":"DeleteAssociation",
+      "source":"4e75c8e7-be9b-4b48-ac5d-adf7c5f9da3e",
+      "target":"a3fa6c06-315f-4fdf-b481-21a460a062a2",
+      "identity":"72a3ac66-3aef-453c-950d-b7ea2ee31eef"
+   },
+   {
+      "@type":"SetFeatureGeometry",
+      "geometry":"POINT (1,1)",
+      "identity":"cc89822e-2ed7-45cf-ad97-b365e27e2b4f"
+   },
+   {
+      "@type":"CreateFeature",
+      "type":"TTOM:4_0:TTOM-Core:RoadElement",
+      "geometry":"POINT (1 1)",
+      "identity":"42fef359-8797-4b9f-8844-8bf8c2141212"
+   },
+   {
+      "@type":"CreateAssociation",
+      "source":"2d4ac81c-bc6d-4405-8784-72b0d2fe3461",
+      "target":"42fef359-8797-4b9f-8844-8bf8c2141212",
+      "type":"TTOM:4_0:TTOM-Core:NetworkElementHasStartJunction",
+      "identity":"1f64e386-40be-4c73-af1f-da43cd748b28",
+      "sequence":0
+   },
+   {
+      "@type":"SetFeatureAttributes”,
+      "type":"TTOM:4_0:TTOM-Core:RoadElement.Freeway",
+      "feature_identity":"2d4ac81c-bc6d-4405-8784-72b0d2fe3461",
+      "values":[
+         {
+            "valueType":"TTOM:4_0:TTOM-Core:Freeway",
+            "values":[
+               "NotPartOfAFreeway"
+            ],
+            "type":"TTOM:4_0:TTOM-Core:RoadElement.Freeway"
+         }
+      ]
+   }
+]
+----
+
+'''
+
+
+
+
+
