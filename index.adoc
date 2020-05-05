@@ -1,7 +1,6 @@
+include::banner.adoc[leveloffset=+1]
+
 = ApplyModifications API
-:toc: left
-:toclevels: 5
-:toc-title: Contents
 
 include::overview.adoc[leveloffset=+1]
 include::quickstart.adoc[leveloffset=+1]
