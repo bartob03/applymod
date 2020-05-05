@@ -1,6 +1,7 @@
 include::banner.adoc[leveloffset=+1]
 
 = ApplyModifications API
+:docinfo: shared
 
 include::overview.adoc[leveloffset=+1]
 include::quickstart.adoc[leveloffset=+1]
