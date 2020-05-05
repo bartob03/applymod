@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "Noto";
+    src: url("/fonts/NotoSans-Bold.ttf") format("ttf"),
+    src: url("/fonts/NotoSans-BoldItalic.ttf") format("ttf"),
+    src: url("/fonts/NotoSansCJKtc-Bold.ttf") format("ttf"),
+    src: url("/fonts/NotoSansCJKtc-Regular.ttf") format("ttf"),
+    src: url("/fonts/NotoSans-Italic.ttf") format("ttf"),
+    src: url("/fonts/NotoSans-Regular.ttf") format("ttf"),     
+  }
+
+#banner {
+    background-image: url(images/tomtom_logo.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-top:68px;
+    margin-bottom:50px;
+ }
+
+
+h1 {
+    font-family: 'CustomFont', Arial, sans-serif;
+    font-weight:normal;
+    font-style:normal;
+    }    

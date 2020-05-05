@@ -1,0 +1,1 @@
+image:styling/images/tomtom_logo.png[TomTom logo,width=200] 
