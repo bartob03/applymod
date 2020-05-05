@@ -2,7 +2,7 @@
 
 The following example demonstrates the different available commands for the `ApplyModifications` API call.
 
-[source,JSON]
+[source,json]
 ----
 [
    {
@@ -77,8 +77,3 @@ The following example demonstrates the different available commands for the `App
 ----
 
 '''
-
-
-
-
-
