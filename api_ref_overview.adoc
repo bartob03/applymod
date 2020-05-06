@@ -1,4 +1,4 @@
-== Supported HTTP methods
+= Supported HTTP methods
 
 
 [width="100%",options="header"]
@@ -7,7 +7,7 @@
 | `POST` | Creates a specified JSON object based on payload provided. 
 |====================
 
-== Response codes
+= Response codes
 
 
 The following table lists typical response codes encountered when making read requests.

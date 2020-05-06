@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.8.dev">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <title>ApplyModifications API</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -240,7 +240,7 @@ table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;pad
 pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
 pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
-.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
 .quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
 .quoteblock blockquote{margin:0;padding:0;border:0}
 .quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
@@ -257,7 +257,8 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
 .quoteblock.abstract{margin:0 1em 1.25em;display:block}
 .quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
-.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
 .quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
 .quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
 table.tableblock{max-width:100%;border-collapse:separate}
@@ -434,18 +435,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="description" content="External documentation by CMR">
+<style>
+#header, #content, #footnotes, #footer {
+    max-width: 75em;
+    padding-left: 0em;
+    padding-right: 0em;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "Noto", sans-serif;
+    color: #df1b12;
+}
+</style>
 </head>
 <body class="article">
 <div id="header">
+<h1>ApplyModifications API</h1>
 </div>
 <div id="content">
-<div class="paragraph">
-<p><span class="image"><img src="styling/images/tomtom_logo.png" alt="TomTom logo" width="200"></span></p>
-</div>
-<h1 id="trueapplymodifications-api" class="sect0"><a class="anchor" href="#trueapplymodifications-api"></a>ApplyModifications API</h1>
 <div class="sect1">
-<h2 id="trueoverview"><a class="anchor" href="#trueoverview"></a>Overview</h2>
+<h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <em>ApplyModifications API</em> is used for making calls via an entry point, which is part of the transactional editing API. The entry point is used as part of a map editing transaction and allows the map process to support translator cascades and checker processes when committing a map transaction.</p>
@@ -453,14 +463,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="truequickstart"><a class="anchor" href="#truequickstart"></a>QuickStart</h2>
+<h2 id="_quickstart">QuickStart</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following example demonstrates the different available commands for the <code>ApplyModifications</code> API call.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">[
+<pre class="highlight"><code class="language-json" data-lang="json">[
    {
       "@type":"CreateFeature",
       "geometry":"POLYGON((4.4861552 52.1503301,4.4861861 52.1503366,4.4861983 52.1503149,4.4861675 52.1503083,4.4861552 52.1503301))",
@@ -536,10 +546,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="trueapi-reference"><a class="anchor" href="#trueapi-reference"></a>API reference</h2>
+<h2 id="_api_reference">API reference</h2>
 <div class="sectionbody">
-<div class="sect3">
-<h4 id="truesupported-http-methods"><a class="anchor" href="#truesupported-http-methods"></a>Supported HTTP methods</h4>
+<div class="sect2">
+<h3 id="_supported_http_methods">Supported HTTP methods</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -559,8 +569,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="trueresponse-codes"><a class="anchor" href="#trueresponse-codes"></a>Response codes</h4>
+<div class="sect2">
+<h3 id="_response_codes">Response codes</h3>
 <div class="paragraph">
 <p>The following table lists typical response codes encountered when making read requests.</p>
 </div>
@@ -588,13 +598,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 <hr>
 </div>
-<div class="sect3">
-<h4 id="trueapplymodifications-api-call"><a class="anchor" href="#trueapplymodifications-api-call"></a>ApplyModifications API call</h4>
+<div class="sect2">
+<h3 id="_applymodifications_api_call">ApplyModifications API call</h3>
 <div class="paragraph">
 <p>URL: <code>POST /transaction/{txnId}/modifications?enableCascades={true/false},groupId={x}</code></p>
 </div>
-<div class="sect4">
-<h5 id="trueheaders"><a class="anchor" href="#trueheaders"></a>Headers</h5>
+<div class="sect3">
+<h4 id="_headers">Headers</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -618,8 +628,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="trueparameters"><a class="anchor" href="#trueparameters"></a>Parameters</h5>
+<div class="sect3">
+<h4 id="_parameters">Parameters</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -657,15 +667,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="truejson-payload"><a class="anchor" href="#truejson-payload"></a>JSON Payload</h5>
+<div class="sect3">
+<h4 id="_json_payload">JSON Payload</h4>
 <div class="paragraph">
 <p>The payload is a JSON encoded array of map editing commands. The order of execution of the commands is to be preserved to ensure that commands with inputs coming from a previously executed command can succeed.</p>
 </div>
 <div class="listingblock">
 <div class="title">JSON payload format</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">[
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">[
     { /command/},
     { /command/},
     …
@@ -673,8 +683,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="truemap-editing-commands"><a class="anchor" href="#truemap-editing-commands"></a>Map Editing Commands</h5>
+<div class="sect3">
+<h4 id="_map_editing_commands">Map Editing Commands</h4>
 <div class="paragraph">
 <p>The following table lists typical fields used in the commands specified in the JSON payload.</p>
 </div>
@@ -712,15 +722,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div class="sect5">
-<h6 id="truecreatefeature"><a class="anchor" href="#truecreatefeature"></a>CreateFeature</h6>
+<div class="sect4">
+<h5 id="_createfeature">CreateFeature</h5>
 <div class="paragraph">
 <p>Creates the object based on the specified type, identity, and geometry. The <code>identity</code> field is optional and if it&#8217;s empty, the backend generates a random identity.</p>
 </div>
 <div class="listingblock">
 <div class="title">CreateFeature command example 1</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
    "@type":"CreateFeature",
    "geometry":"POINT(1 1)”,
    "identity":"43f4aea0-67fc-4db4-aae8-2b8d39c5e03e",
@@ -731,7 +741,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">CreateFeature command example 2</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
       "@type":"CreateFeature",
       "type":"TTOM:4_0:TTOM-Core:RoadElement",
       "geometry":"POINT (1 1)",
@@ -741,8 +751,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <hr>
 </div>
-<div class="sect5">
-<h6 id="truecreateassociation"><a class="anchor" href="#truecreateassociation"></a>CreateAssociation</h6>
+<div class="sect4">
+<h5 id="_createassociation">CreateAssociation</h5>
 <div class="paragraph">
 <p>Creates an association between two already existing features. The features can be created in the same call as <code>applyModifications</code>.</p>
 </div>
@@ -781,7 +791,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">CreateAssociation command example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
    "@type":"CreateFeature",
    "geometry":"POINT(1 1)”,
    "identity":"43f4aea0-67fc-4db4-aae8-2b8d39c5e03e",
@@ -791,8 +801,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <hr>
 </div>
-<div class="sect5">
-<h6 id="truesetfeatureattributes"><a class="anchor" href="#truesetfeatureattributes"></a>SetFeatureAttributes</h6>
+<div class="sect4">
+<h5 id="_setfeatureattributes">SetFeatureAttributes</h5>
 <div class="paragraph">
 <p>Sets attributes of the feature as defined by the <code>featureIdentity</code> field.</p>
 </div>
@@ -862,7 +872,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Attribute example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
 "values":[
          {
             "valueType":"TTOM:4_0:TTOM-Core:Freeway",
@@ -876,7 +886,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">SetFeatureAttributes command example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
    "@type":"SetFeatureAttributes”,
    "featureIdentity":"5859e98b-068c-459f-8208-b1567957eb3c",
    "type":"DisplayModel:0.35:DisplayModel:S2",
@@ -892,15 +902,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <hr>
 </div>
-<div class="sect5">
-<h6 id="truedeletefeature"><a class="anchor" href="#truedeletefeature"></a>DeleteFeature</h6>
+<div class="sect4">
+<h5 id="_deletefeature">DeleteFeature</h5>
 <div class="paragraph">
 <p>Deletes a feature as defined by the provided <code>identity</code> value.</p>
 </div>
 <div class="listingblock">
 <div class="title">DeleteFeature example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
       "@type":"DeleteFeature",
       "identity":"cc89822e-2ed7-45cf-ad97-b365e27e2b4f"
 }</code></pre>
@@ -908,15 +918,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <hr>
 </div>
-<div class="sect5">
-<h6 id="truedeleteassociation"><a class="anchor" href="#truedeleteassociation"></a>DeleteAssociation</h6>
+<div class="sect4">
+<h5 id="_deleteassociation">DeleteAssociation</h5>
 <div class="paragraph">
 <p>Deletes an association defined either by the association identity or type of association, and the source and target feature identities.</p>
 </div>
 <div class="listingblock">
 <div class="title">DeleteFeature command example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
       "@type":"DeleteAssociation",
       "identity":"72a3ac66-3aef-453c-950d-b7ea2ee31eef"
 }</code></pre>
@@ -924,15 +934,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <hr>
 </div>
-<div class="sect5">
-<h6 id="truesetfeaturegeometry"><a class="anchor" href="#truesetfeaturegeometry"></a>SetFeatureGeometry</h6>
+<div class="sect4">
+<h5 id="_setfeaturegeometry">SetFeatureGeometry</h5>
 <div class="paragraph">
 <p>Sets the geometry of an already existing feature. The type of geometry must match the existing feature type.</p>
 </div>
 <div class="listingblock">
 <div class="title">SetFeatureGeometry command example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
    "@type":"SetFeatureGeometry",
    "geometry":"POINT (1,1)",
    "identity":"cc89822e-2ed7-45cf-ad97-b365e27e2b4f"
@@ -941,15 +951,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <hr>
 </div>
-<div class="sect5">
-<h6 id="truesetassociationattributes"><a class="anchor" href="#truesetassociationattributes"></a>SetAssociationAttributes</h6>
+<div class="sect4">
+<h5 id="_setassociationattributes">SetAssociationAttributes</h5>
 <div class="paragraph">
 <p>Sets the attributes of an association. The association can be defined by the identity or by type, source and target identity. The attribute values are provided in the same way as the <a href="#setFeatureAttributes">setFeatureAttributes</a> command.</p>
 </div>
 <div class="listingblock">
 <div class="title">SetAssociationAttributes command example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
    "@type":"SetAssociationAttributes”,
    “associationIdentity":"5859e98b-068c-459f-8208-b1567957eb3c",
    "type":"DisplayModel:0.35:DisplayModel:A2",
@@ -966,8 +976,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <hr>
 </div>
 </div>
-<div class="sect4">
-<h5 id="trueresponse-format"><a class="anchor" href="#trueresponse-format"></a>Response format</h5>
+<div class="sect3">
+<h4 id="_response_format">Response format</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1011,7 +1021,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Response example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="JSON" class="language-JSON hljs">{
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
     “branch”: “cde4aea0-67fc-4db4-aae8-2b8d39c5e03e”,
     “version”: 17,
     “commands”: [
@@ -1028,7 +1038,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="truerelated-links"><a class="anchor" href="#truerelated-links"></a>Related links</h2>
+<h2 id="_related_links">Related links</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following link discusses topics related to the API.</p>
@@ -1043,21 +1053,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="truesupport-information"><a class="anchor" href="#truesupport-information"></a>Support information</h2>
+<h2 id="_support_information">Support information</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For support and issues regarding the applyModifications API, refer to <a href="mailto:CAMULodz@groups.tomtom.com">CAMULodz@groups.tomtom.com</a></p>
 </div>
+<hr>
+<div class="paragraph">
+<p><strong>&#169; 2020 TomTom NV. All rights reserved.</strong></p>
+</div>
+<hr>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-05 15:38:33 +0200
+Last updated 2020-05-06 10:42:25 +0200
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
+<meta name="description" content="External documentation header by CMR">
+<link rel="stylesheet" href="footer.css">
+<style>
+a{background: none;}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+</style>
 </body>
 </html>

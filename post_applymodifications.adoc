@@ -1,8 +1,8 @@
-== ApplyModifications API call 
+= ApplyModifications API call 
 
 URL: `POST /transaction/{txnId}/modifications?enableCascades={true/false},groupId={x}`
 
-=== Headers
+== Headers
 
 [width="100%",options="header"]
 |====================
@@ -12,7 +12,7 @@ URL: `POST /transaction/{txnId}/modifications?enableCascades={true/false},groupI
 |====================
 
 
-=== Parameters
+== Parameters
 
 [width="100%",options="header"]
 |====================
@@ -22,7 +22,7 @@ URL: `POST /transaction/{txnId}/modifications?enableCascades={true/false},groupI
 | `groupId` | Required | `none` |The group to which the edit should be applied. This is used when reverting edits.
 |====================
 
-=== JSON Payload
+== JSON Payload
 
 The payload is a JSON encoded array of map editing commands. The order of execution of the commands is to be preserved to ensure that commands with inputs coming from a previously executed command can succeed.
 
@@ -39,7 +39,7 @@ The payload is a JSON encoded array of map editing commands. The order of execut
 
 ----
 
-=== Map Editing Commands
+== Map Editing Commands
 
 The following table lists typical fields used in the commands specified in the JSON payload.
 
@@ -52,7 +52,7 @@ The following table lists typical fields used in the commands specified in the J
 |====================
 
 
-==== CreateFeature
+=== CreateFeature
 
 Creates the object based on the specified type, identity, and geometry. The `identity` field is optional and if it's empty, the backend generates a random identity.
 
@@ -89,7 +89,7 @@ Creates the object based on the specified type, identity, and geometry. The `ide
 
 '''
 
-==== CreateAssociation
+=== CreateAssociation
 
 Creates an association between two already existing features. The features can be created in the same call as `applyModifications`.
 
@@ -119,7 +119,7 @@ Creates an association between two already existing features. The features can b
 '''
 
 
-==== SetFeatureAttributes
+=== SetFeatureAttributes
 
 Sets attributes of the feature as defined by the `featureIdentity` field.
 
@@ -184,7 +184,7 @@ Sets attributes of the feature as defined by the `featureIdentity` field.
 
 '''
 
-==== DeleteFeature
+=== DeleteFeature
 
 Deletes a feature as defined by the provided `identity` value.
 
@@ -202,7 +202,7 @@ Deletes a feature as defined by the provided `identity` value.
 
 '''
 
-==== DeleteAssociation
+=== DeleteAssociation
 
 Deletes an association defined either by the association identity or type of association, and the source and target feature identities.
 
@@ -220,7 +220,7 @@ Deletes an association defined either by the association identity or type of ass
 
 '''
 
-==== SetFeatureGeometry
+=== SetFeatureGeometry
 
 Sets the geometry of an already existing feature. The type of geometry must match the existing feature type.
 
@@ -240,7 +240,7 @@ Sets the geometry of an already existing feature. The type of geometry must matc
 '''
 
 
-==== SetAssociationAttributes
+=== SetAssociationAttributes
 
 Sets the attributes of an association. The association can be defined by the identity or by type, source and target identity. The attribute values are provided in the same way as the <<setFeatureAttributes, setFeatureAttributes>> command.
 
@@ -267,7 +267,7 @@ Sets the attributes of an association. The association can be defined by the ide
 '''
 
 
-=== Response format
+== Response format
 
 [width="100%",options="header"]
 |====================

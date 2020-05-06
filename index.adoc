@@ -1,5 +1,3 @@
-include::banner.adoc[leveloffset=+1]
-
 = ApplyModifications API
 :docinfo: shared
 
